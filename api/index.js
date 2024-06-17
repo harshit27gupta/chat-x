@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -8,7 +9,6 @@ const path = require("path");
 const cors = require("cors");
 const http = require("http");
 const socketIo = require("socket.io");
-require('dotenv').config();
 const app = express();
 const port = 3000;
 app.use(cors());
@@ -17,9 +17,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-mongoose.connect(process.env.MONGODB_URI, {
+console.log("MONGODB_URI:", process.env.MONGODB_URI); // Check if the variable is loaded
 
-})
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log("Connected to MongoDB");
   })
